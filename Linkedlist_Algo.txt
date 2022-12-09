@@ -1,0 +1,388 @@
+
+##############################################################################
+
+
+Algorithm: MERGE_SORT(A, F, L)
+[A is an array of N elements, F is the first position and L is the
+last position of the sub-array]
+1. If F < L then
+	a) Set MID = (F + L)/2
+	b) Call MERGE_SORT(A, F, MID)
+	C) Call MERGE_SORT(A, MID+1, L)
+	d) Call MERGE(A, F, L, MID)
+2. Return
+Function: MERGE(A, F, L, MID)
+[A is an array, F is the first position, L is the last position and
+MID is the middle position of the sub-array]
+1. Set I = F, J = MID + 1, K = F
+2. Repeat while I <= MID and J <= L
+If A[I] < A[J] then
+	a) Set C[K] = A[I]
+	b) Set I = I + 1
+	c) Set K = K + 1
+ELSE
+	a) Set C[K] = A[J]
+	b) Set J = J + 1
+	c) Set K = K + 1
+	[End of If]
+	[End of Loop]
+3. Repeat while I<= MID
+	a) Set C[K] = A[I]
+	b) Set I = I + 1
+	c) Set K = K + 1
+	[End of Loop]
+4. Repeat while J <= L
+	a) Set C[K] = A[J]
+	b) Set J = J + 1
+	c) Set K = K + 1
+	[End of If]
+	[End of Loop]
+5. Repeat For I = F to K
+Set A[I] = C[I]
+6. Return
+
+
+###############################################################
+
+Algorithm: QUICK_SORT(A, F, L)
+[A is an array of N elements, F is the first position and L is the
+last position of the sub-array]
+1. If F >= L then Return
+2. Call PARTITION(A, F, L, POS)
+3. Call QUICK_SORT(A, F, POS-1)
+4. Call QUICK_SORT(A, POS+1, L)
+5. Return
+Function: PARTITION(A, F, L, POS)
+[A is an array, F is the first position and L is the last position
+of the sub-array, POS is the position of the pivot]
+1. Set I = F, J = L, POS = F
+2. Repeat steps 3 and 4 while TRUE
+3. 	a) Repeat while A[POS] <= A[J] and POS ≠ J
+	J = J - 1
+	[End of Loop]
+	b) If POS = J then Return
+	c) A[POS] > A[J] then
+	i) Temp = A[POS], A[POS] = A[J], A[J] = Temp
+	ii) Set POS = J
+4. 	a) Repeat while A[POS] >= A[I] and POS ≠ I
+	I = I + 1
+	[End of Loop]
+	b) If POS = I then Return
+	c) A[POS] < A[I] then
+	i) Temp = A[POS], A[POS] = A[I], A[I] = Temp
+	ii) Set POS = I
+	[End of Loop]
+5. Return
+
+####################################################################
+
+Algorithm: SELECTION_SORT (A, N)
+[A is an array of N elements]
+1. Repeat steps 2 and 3 for K=1 to N-1
+2. Call MIN(A, K, N, LOC)
+3. If A[K] ≠ A[LOC] then
+	a) Temp = A[K]
+	b) A[K] = A[LOC]
+	c) A[LOC] = Temp
+	[End of If]
+4. Return
+
+Function: MIN (A, K, N, LOC)
+[A is an array of N elements, K is the starting index of sub-array,
+LOC is the the location the minimum element of the sub-array]
+1. Set MIN = A[K], LOC = K
+2. Repeat for J = K + 1 to N
+If MIN > A[J] then
+	a) Set MIN = A[J]
+	b) Set LOC = J
+	[End of If]
+	[End of loop]
+3. Return
+
+#####################################################################
+
+Algorithm: INSERTION_SORT (A, N)
+[A is an array of N elements]
+1. Repeat steps 2 to 4 For K = 1 to N
+2. Set Temp = A[K] and P = K - 1
+3. Repeat while Temp < A[P] and P >= 0
+	a) Set A[P+1] = A[P]
+	b) Set P = P - 1
+	[End of loop]
+4. Set A[P+1] = Temp
+[End of loop]
+5. Return
+
+
+######################################################################
+
+array insert first(ar[],size,item)
+step 1: Begin
+step 2: set i=size-1
+step 3: if i>=1 then set ar[i+1]=ar[i] else go to step 5
+step 4: set i=i+1 go to step 3
+step 5: set ar[0]=item
+step 6: End
+
+########################################################################
+
+array insert last(ar[],size,item)
+step 1: Begin
+step 2: ar[size]=item
+step 3: End
+
+########################################################################
+
+array insert pos(ar[],size,item)
+step 1: begin
+step 2: set i=size-1
+step 3: if i>=p then
+	3.1: set ar[i+1]=ar[i]
+	3.2: set i:=i-1 go to step 3
+step 4: else go to step 5
+step 5: set ar[i+1]=ar[i],ar[i]=item
+step 6: end
+
+########################################################################
+
+
+algorithm delete first(ar,size)
+st1: begin
+st2: set i:=0
+st3: if i<size then
+	st3.1: set ar[i]:=ar[i+1]
+	st3.2: i:=i+1 go to step 3
+st4: else go to step5
+st5: dispaly(ar,size-1)
+st6: end
+
+########################################################################
+
+algorithm delete pos(ar,size)
+st1: begin
+st2: set i:=0
+st3: if i<p-1 then set i:=i+1
+st4: if i<size-1 then
+	st4.1: set ar[i]:=ar[i+1]
+	st4.2: set i:=i+1 go to step 4
+st5: else go to step 6
+st6: dispaly(ar,size-1)
+st7: end
+
+######################################################################
+
+algorithm delete last(ar,size)
+st1: begin
+st6: dispaly(ar,size-2)
+st7: end
+
+
+########################################################################
+algorithm creation (struct list *head)
+st1:begin
+st2:set:=new allocate memory
+st3:if new!=null them
+	st3.1:input item
+	st3.2:set new -> data := item	
+	st3.3:set new -> link := NULL
+	st3.4:if head = NULL then set head := new go to step 6
+	st3.5:else, set temp :=head
+	st3.6:if temp -> link := NULL then 
+            set temp := temp ->link repeat
+	st3.7:else,set temp -> link : new 	go to step 6
+st4:return head
+st5:else,print"no memory" go to step 6
+st6:end
+
+
+############################################################
+
+
+Algorithm Traverse (struct list *head)
+Step 1: Begin
+step 2: if head != NULL then
+	step 2-1: set temp:= head
+	step 2.2: if temp != NULL then 
+	Step 2:3: Print temp -> data
+	Step 2.4: set temp := temp → link go to step 2.2
+	Step 2.5: else, go to step 4
+Step 3: else, print "No List Exist" go to step 4
+step 4: end
+
+
+#############################################################
+
+Algorithm insert_last (struct list "head)
+Step 1: Begin
+step2: set new := allocate memory. 
+steps3: if new != NULL then
+	Step 3.1: input item
+	Step 3.2: set new-> data = item
+	Step 3.3: set new -> link := NULL
+	Step 3.4: set temp := head
+	Step 3.5: if temp -> link != NULL then set 
+		    temp:= temp -> link repeat
+	Step 3.6: set temp-> link: = new 	go to step 5 
+Step 4: else, print "No memory" go to step 5
+steps: end
+
+
+##############################################################
+
+
+Algorithm insert first (struct list *head)
+step 1: Begin
+Step 2: set now := allocate memory
+Step 3: Input item.
+Step 4: set new data := item
+step 5: set new -> link := head -> link
+Step 6: set head := new
+step 7: end
+
+
+###############################################################
+
+
+Algorithm insert-position (struct list *head, int p)
+step1: Begin
+step2: set new:= allocate memory
+step3: if new != NULL then
+ 	Step3.1: input item
+	Step3.2: set new -> data:= item
+	Step 3.3: set temp := head.
+	Step 3.4: set Count := 1
+	Step 3.5: if count <p then
+		step 3.5.1: set temp1:= temp
+		step 3.5.2: temp:= temp -> link
+		Step 3.5.3: set count = count + 1 go to step 3.5
+ Step 3.6: else, set temp 2 = temp1 -> link
+Step 3.7: set temp1-> link := new
+Step 3.8: set new -> link := temp 2 go to step 5 
+Step 4: else print ("No memory")
+steps: end.
+
+
+################################################################
+
+Algorithm delete_first (struct list *head)
+step 1: Begin
+step 2: set temp := head
+step 3: set head := head-> link 
+Step 4: deallocate temp
+steps: end
+
+
+#################################################################
+
+
+Algorithm delete_last (struct list *head)
+step 1: Begin
+step 2: set temp := head
+step 3: if temp -> link != NULL then 
+	step3.1: set prev := temp
+	step 3.2: set temp := temp- link go to step 3
+Step 4: set prev -> link = NULL
+step 5: deallocate (temp) 
+step 6: end
+
+##################################################################
+
+
+Algorithm delete-position (struct list *head, int pos)
+step1: Begin
+step2: set temp := head, set count = 1 
+step3: if count <= pos then
+	step3.1: set prev := temp
+	step3.2: set temp: temp -> link 
+	step3.3: set count: Count + 1
+Step4: set prev-> link : tem -> link
+step5: deallocate temp
+step6: end
+
+##################################################################
+
+algorithm push(item)
+st1: begin
+st2: if (top=max-1) then print "stack overflow" go to st5
+st3: set top:=top+1
+st4: set stack[top]:=item
+st5: end
+
+algorithm pop()
+st1: begin
+st2: if (top=-1) then print "stack underflow" go to st6
+st3: set item:= stack[top]
+st4: set top=top-1
+st5: return item
+st6: end
+
+######################################################################
+
+
+algorithm enqueue(Q,item)
+st1: Begin
+st2: if(rear=size-1)then print"overflow"go to step 4
+st3: else
+	st3.1:set rear = rear+1
+	st3.2:set Q[rear]:=item, go to st4
+st4:end
+
+
+
+
+algorithm dequeue(Q)
+st1: Begin
+st2: if(rear==-1 or rear==front)then print"underflow"go to step 4
+st3: else
+	st3.1: set front = front+1
+	st3.2: set item:=Q[front]  go to st4
+	st3.3: return item
+st4: end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
